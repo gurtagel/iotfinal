@@ -1,0 +1,24 @@
+1. The first thing that you are going to want to do is install git and vim with:
+   "sudo apt-get update && sudo apt-get install git vim"
+(Note this will have to be done on bothRaspberry Pi's)
+
+2. Next we will use the instructions from this link in order to get a piece of software working that will read temperature and humidity from the temp/humd sensor.
+(Note this will have to be done on both Raspberry Pi's)
+
+   "git clone https://github.com/adafruit/Adafruit_Python_DHT.git"
+   "cd Adafruit_Python_DHT"
+   "sudo apt-get update"
+   "sudo apt-get install build-essential python-dev python-openssl"
+   "sudo python setup.py install"
+
+3. Next run the following commands on the master Raspberry Pi node (the one you decide to be the webserver host)
+   "sudo pip install flask"
+   "sudo pip install GPIO"
+
+4. Next get the webserver from Git using the following command:
+   "git clone ............."***
+
+5. Next we will make several changes in the webserver file
+   1. First
+
+6. Now we will make several changes on the slave node****
