@@ -7,16 +7,24 @@ from flask import Flask
 app = Flask(__name__)
 
 
+#change these variables depending on your own configuration
+sound_gpio_port = 17
+slave_hostname = "pi"
+slave_ip_addr = "192.168.1.111"
+master_temp_gpio_port = 4
+slave_temp_gpio_port = 2
+master_adafruit_loc = "../Adafruit_Python_DHT/examples/AdafruitDHT.py"
+slave_adafruit_loc = "Adafruit_Python_DHT/examples/AdafruitDHT.py"
 
 @app.route("/")
 def hello():
     #getting values from sound sensor
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(17, GPIO.IN)
+    GPIO.setup(sound_gpio_port, GPIO.IN)
     loud_list = []
     switch = 0
     for i in range(1000):
-        loud_list.append(GPIO.input(17))
+        loud_list.append(GPIO.input(sound_gpio_port))
     for i in range(1000):
         if loud_list[i] > 0:
             switch = 1
@@ -107,7 +115,7 @@ return false;
 <tbody>"""
 
     degree_sign= u'\N{DEGREE SIGN}'
-    parser = subprocess.check_output("../Adafruit_Python_DHT/examples/AdafruitDHT.py 11 4", shell=True).strip('\n').split(' ')
+    parser = subprocess.check_output(master_adafruit_loc + " 11 " + str(master_temp_gpio_port)  + "", shell=True).strip('\n').split(' ')
     temp = re.findall("\d+\.\d+", parser[0])[0]
     humd = re.findall("\d+\.\d+", parser[2])[0]
     # Add what needs to be done to add sound here
@@ -115,8 +123,9 @@ return false;
     x += "</tbody>\n</table>\n"
     x += "<br>\n<br>\n<br>\n<br>\n<br>\n<b>Sensor 2</b>\n"
     x += """<table id="myTable" class="tablesorter">\n<thead>\n<tr>\n<th>Temperature</th>\n<th>Humidity</th>\n</tr>\n</thead>\n<tbody>\n"""
+    
     #Add logic here to get data from remote sensor
-    ssh_data = subprocess.check_output("ssh pi@192.168.43.60 'Adafruit_Python_DHT/examples/AdafruitDHT.py 11 2'", shell=True).strip('\n')
+    ssh_data = subprocess.check_output("ssh " + slave_hostname  + "@" + slave_ip_addr + " '" + slave_adafruit_loc  + " 11 " + str(slave_temp_gpio_port)  + "'", shell=True).strip('\n')
     parser = ssh_data.split(' ')
     temp2 = re.findall("\d+\.\d+", parser[0])[0]
     humd2 = re.findall("\d+\.\d+", parser[2])[0]

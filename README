@@ -22,14 +22,14 @@
    "ssh-copy-id -i ~/.ssh/id_rsa.pub <SLAVE_HOSTNAME>@<SLAVE_IP_ADDR>"
 
 5. Next we will make several changes in the webserver file
-   1. First on lines 15 and 19, change the GPIO pin for the sound sensor to whichever you are using (in our case we are using pin 17)
-   2. Next on line 110, we have hardcoded the location of the Adafruit temperature driver. Change it depending on where you cloned it to. 
+   1. First on line 11, change the GPIO pin for the sound sensor to whichever you are using (in our case we are using pin 17)
+   2. Next on line 16, we have hardcoded the location of the Adafruit temperature driver. Change it depending on where you cloned it to. 
       In our case it was in ../Adafruit_Python_DHT/examples/AdafruitDHT.py. 
-   3. On the same line, we hardcoded the GPIO pin for the temp/humd sensor to 4, change this to where you have it.
-   4. On line 119, change the hostname and ip address for the slave node to whatever your respective device's hostname and ip are.
-      In addition, change the location of the Adafruit installation on this same line like you did in step 2.
-      Also, on that same line, change the GPIO pin from 2 to whichever pin you installed it on the slave device.
+   3. On line 14, we hardcoded the GPIO pin for the temp/humd sensor to 4, change this to where you have it.
+   4. On lines 12 and 13, change the hostname and ip address for the slave node to whatever your respective device's hostname and ip are.
+      In addition, on line 17, change the loc of the Adafruit installation on the slave node.
+      Also, on line 15, change the GPIO pin from 2 to whichever pin you installed it on the slave device.
 
-6. At this point, you should be able to type in the terminal "python server.py"; now by navigating to "127.0.0.1:5000" you should see the website.
+6. At this point, you should be able to type in the terminal "python server.py" assuming that you are in the same directory as the server.py script; now by navigating to "127.0.0.1:5000" you should see the website.
 
-
+  
