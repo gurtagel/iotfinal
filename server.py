@@ -10,7 +10,7 @@ app = Flask(__name__)
 #change these variables depending on your own configuration
 sound_gpio_port = 17
 slave_hostname = "pi"
-slave_ip_addr = "192.168.1.111"
+slave_ip_addr = "192.168.1.101"
 master_temp_gpio_port = 4
 slave_temp_gpio_port = 2
 master_adafruit_loc = "../Adafruit_Python_DHT/examples/AdafruitDHT.py"
@@ -136,7 +136,7 @@ return false;
 
     #Here we are combining the data from all sensors in the CSL into one statistic for temperature, humidity, and sound
     x += "<br>\n<br>\n<br>\n<br>\n<br>\n<b>Combined</b>\n"
-    x += """<table id="myTable" class="tablesorter">\n<thead>\n<tr>\n<th>Temperature</th>\n<th>Humidity</th>\n<th>Temperature</th>\n</tr>\n</thead>\n<tbody>\n"""
+    x += """<table id="myTable" class="tablesorter">\n<thead>\n<tr>\n<th>Temperature</th>\n<th>Humidity</th>\n<th>Sound</th>\n</tr>\n</thead>\n<tbody>\n"""
     
     temp_comb = (float(temp) + float (temp2)) / 2.0
     humd_comb = (float(humd) + float (humd2)) / 2.0
